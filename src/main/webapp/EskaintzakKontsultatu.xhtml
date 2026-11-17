@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:ui="jakarta.faces.facelets"
+	xmlns:p="primefaces">
+<ui:composition template="/WEB-INF/facelets/templates/Txantiloia.xhtml">
+	<ui:define name="izenburua">Eskaintzak kontsultatu</ui:define>
+	<ui:define name="gorputza">
+		<h2>Eskaintzak bilatu</h2>
+		<h:form id="kontsultaForm">
+			<p>
+				<h:inputText id="bilaketa" value="#{kontsultatu.bilaketa}" size="40" />
+				<h:commandButton styleClass="botoia" value="Bilatu" action="#{kontsultatu.bilatu}">
+					<f:ajax execute="bilaketa" render="taula xehetasunak mezuak" />
+				</h:commandButton>
+			</p>
+
+			<h4>Eskaintzak (klik egin eskaintza bat ikusteko)</h4>
+			<p:dataTable id="taula" value="#{kontsultatu.eskaintzak}" var="s"
+				selectionMode="single" selection="#{kontsultatu.aukeratua}"
+				rowKey="#{s.saleNumber}" emptyMessage="Ez daude eskaintzak">
+				<p:ajax event="rowSelect" update=":kontsultaForm:xehetasunak" />
+				<p:column headerText="Tituloa">#{s.title}</p:column>
+				<p:column headerText="Prezioa">
+					<h:outputText value="#{s.price}">
+						<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Argitarapen eguna">
+					<h:outputText value="#{s.publicationDate}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+
+			<h:panelGroup id="xehetasunak" layout="block">
+				<h:panelGroup layout="block" styleClass="xehetasunak" rendered="#{kontsultatu.aukeratua ne null}">
+					<div>
+						<h3>#{kontsultatu.aukeratua.title}</h3>
+						<p><b>Deskripzioa:</b> #{kontsultatu.aukeratua.description}</p>
+						<p><b>Prezioa:</b>
+							<h:outputText value="#{kontsultatu.aukeratua.price}">
+								<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+							</h:outputText></p>
+						<p><b>Egoera:</b> #{kontsultatu.egoeraIzena}</p>
+						<p><b>Argitarapen eguna:</b>
+							<h:outputText value="#{kontsultatu.aukeratua.publicationDate}">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:outputText></p>
+						<p><b>Saltzailea:</b> #{kontsultatu.aukeratua.seller.name}</p>
+					</div>
+					<h:graphicImage styleClass="argazkia" rendered="#{kontsultatu.aukeratua.file ne null}"
+						value="/irudiak/#{kontsultatu.aukeratua.file}" alt="#{kontsultatu.aukeratua.title}" />
+				</h:panelGroup>
+			</h:panelGroup>
+
+			<p>
+				<h:commandButton styleClass="botoia" value="Itxi" action="hasiera" immediate="true" />
+			</p>
+			<h:messages id="mezuak" styleClass="mezuak" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

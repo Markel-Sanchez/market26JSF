@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:ui="jakarta.faces.facelets"
+	xmlns:p="primefaces">
+<ui:composition template="/WEB-INF/facelets/templates/Txantiloia.xhtml">
+	<ui:define name="izenburua">Eskaintza sortu</ui:define>
+	<ui:define name="gorputza">
+		<h2>Sortu Eskaintza</h2>
+		<h:form id="sortuForm" enctype="multipart/form-data">
+			<table class="formularioa">
+				<tr>
+					<td>Tituloa:</td>
+					<td><h:inputText id="titulua" value="#{sortu.titulua}" size="40"
+							required="true" requiredMessage="Tituloa derrigorrezkoa da" /></td>
+					<td><h:message for="titulua" styleClass="errorea" /></td>
+				</tr>
+				<tr>
+					<td>Deskripzioa:</td>
+					<td><h:inputTextarea id="deskripzioa" value="#{sortu.deskripzioa}" rows="4" cols="40"
+							required="true" requiredMessage="Deskripzioa derrigorrezkoa da" /></td>
+					<td><h:message for="deskripzioa" styleClass="errorea" /></td>
+				</tr>
+				<tr>
+					<td>Prezioa:</td>
+					<td><h:inputText id="prezioa" value="#{sortu.prezioa}" size="10"
+							required="true" requiredMessage="Prezioa derrigorrezkoa da"
+							converterMessage="Prezioa zenbaki bat izan behar da"
+							validatorMessage="Prezioa 0 baino handiagoa izan behar da">
+							<f:validateDoubleRange minimum="0.01" />
+						</h:inputText></td>
+					<td><h:message for="prezioa" styleClass="errorea" /></td>
+				</tr>
+				<tr>
+					<td>Egoera:</td>
+					<td><h:selectOneMenu id="egoera" value="#{sortu.egoera}">
+							<f:selectItems value="#{sortu.egoerak}" />
+						</h:selectOneMenu></td>
+					<td><h:message for="egoera" styleClass="errorea" /></td>
+				</tr>
+				<tr>
+					<td>Argitarapen eguna:</td>
+					<td><p:datePicker id="data" value="#{sortu.data}" pattern="yyyy/MM/dd"
+							mindate="#{sortu.gaur}" inline="true"
+							required="true" requiredMessage="Data aukeratu behar da" /></td>
+					<td><h:message for="data" styleClass="errorea" /></td>
+				</tr>
+				<tr>
+					<td>Argazkia:</td>
+					<td><h:inputFile id="argazkia" value="#{sortu.argazkia}" accept="image/*" /></td>
+					<td><h:message for="argazkia" styleClass="errorea" /></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton styleClass="botoia" value="Sortu Eskaintza" action="#{sortu.sortu}" />
+				<h:commandButton styleClass="botoia" value="Itxi" action="hasiera" immediate="true" />
+			</p>
+			<h:messages id="mezuak" globalOnly="true" styleClass="mezuak" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

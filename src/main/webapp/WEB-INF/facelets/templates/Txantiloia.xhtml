@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="jakarta.faces.html"
+	xmlns:ui="jakarta.faces.facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="izenburua">Merkatua</ui:insert></title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<header class="goiburua">
+		<h1>Merkatua</h1>
+		<span class="erabiltzailea">#{saioa.saltzailea}</span>
+	</header>
+
+	<div class="edukia">
+		<nav class="menua">
+			<ui:include src="Menua.xhtml" />
+		</nav>
+		<main class="gorputza">
+			<ui:insert name="gorputza">Eraikitzen...</ui:insert>
+		</main>
+	</div>
+
+	<ui:insert name="orri-oina">
+		<footer class="orri-oina">&#169; Software Ingeniaritza II - MarketJSF</footer>
+	</ui:insert>
+</h:body>
+</html>

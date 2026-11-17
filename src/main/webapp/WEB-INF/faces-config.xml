@@ -4,6 +4,27 @@
 	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd"
 	version="4.0">
 
-	<!-- Bisten arteko nabigazio-arauak hemen definituko dira -->
+	<navigation-rule>
+		<from-view-id>/Hasiera.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>sortu</from-outcome>
+			<to-view-id>/EskaintzaSortu.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>kontsultatu</from-outcome>
+			<to-view-id>/EskaintzakKontsultatu.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>hasiera</from-outcome>
+			<to-view-id>/Hasiera.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

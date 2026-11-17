@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:ui="jakarta.faces.facelets">
+<ui:composition template="/WEB-INF/facelets/templates/Txantiloia.xhtml">
+	<ui:define name="izenburua">Merkatua</ui:define>
+	<ui:define name="gorputza">
+		<h:form id="hasieraForm">
+			<h2>Aukeratu</h2>
+			<div class="hasiera-botoiak">
+				<h:commandButton styleClass="botoia" value="Eskaintza sortu" action="sortu" />
+				<h:commandButton styleClass="botoia" value="Eskaintzak kontsultatu" action="kontsultatu" />
+			</div>
+			<h:messages styleClass="mezuak" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

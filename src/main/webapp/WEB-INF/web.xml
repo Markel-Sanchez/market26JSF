@@ -11,6 +11,10 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
+		<!-- h:inputFile osagaiarekin argazkiak igotzeko -->
+		<multipart-config>
+			<max-file-size>10485760</max-file-size>
+		</multipart-config>
 	</servlet>
 
 	<servlet-mapping>
