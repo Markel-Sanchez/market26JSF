@@ -1,0 +1,23 @@
+# Maven / Eclipse build output
+target/
+bin/
+build/
+
+# Eclipse server / workspace files
+.metadata/
+*.launch
+
+# ObjectDB runtime database files
+*.temp
+*.temp$
+*.odb
+*.odb$
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+.idea/
+*.iml
+.vscode/
