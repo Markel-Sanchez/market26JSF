@@ -1,120 +1,55 @@
 body {
-	margin: 0;
-	font-family: Verdana, Arial, sans-serif;
-	background-color: #f2f5f9;
-	color: #222;
+	font-family: Verdana, sans-serif;
+	margin: 20px;
 }
 
 .goiburua {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 12px 24px;
-	background-color: #1f4e79;
-	color: white;
-}
-
-.goiburua h1 {
-	margin: 0;
-	font-size: 26px;
+	border-bottom: 1px solid #ccc;
 }
 
 .edukia {
 	display: flex;
-	gap: 24px;
-	max-width: 1100px;
-	margin: 24px auto;
-	padding: 0 16px;
-}
-
-.menua {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	min-width: 180px;
-	padding: 16px;
-	background-color: #dbe7f3;
-	border-radius: 6px;
-	align-self: flex-start;
-}
-
-.menua h4 {
-	margin: 0 0 8px 0;
+	gap: 30px;
+	margin: 20px 0;
 }
 
 .menua a {
-	color: #1f4e79;
-	text-decoration: none;
-}
-
-.menua a:hover {
-	text-decoration: underline;
+	display: block;
+	margin-bottom: 6px;
 }
 
 .gorputza {
 	flex: 1;
-	padding: 20px;
-	background-color: white;
-	border-radius: 6px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-}
-
-.gorputza h2 {
-	margin-top: 0;
-	color: #1f4e79;
 }
 
 .formularioa td {
-	padding: 6px 8px;
-	vertical-align: top;
+	padding: 4px 8px;
 }
 
-.hasiera-botoiak {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	max-width: 320px;
-}
-
-.botoia {
-	padding: 10px 16px;
-	font-size: 16px;
-	cursor: pointer;
+.hasiera-botoiak .botoia {
+	display: block;
+	margin-bottom: 10px;
 }
 
 .errorea {
-	color: #c00000;
+	color: red;
 }
 
 .mezuak {
-	color: #1f4e79;
+	color: blue;
 }
 
 .xehetasunak {
-	display: flex;
-	gap: 24px;
 	margin-top: 20px;
-	padding: 16px;
-	border: 1px solid #ccc;
-	border-radius: 6px;
 }
 
 .argazkia {
 	width: 160px;
 	height: 160px;
-	object-fit: cover;
-	border: 1px solid #ccc;
 }
 
 .orri-oina {
 	text-align: center;
-	padding: 16px;
-	color: #1f4e79;
-	font-size: 13px;
-}
-
-@media (max-width: 700px) {
-	.edukia {
-		flex-direction: column;
-	}
+	color: gray;
+	font-size: 12px;
 }
