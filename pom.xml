@@ -99,6 +99,24 @@
 		<!-- URLa: http://localhost:8080/MarketJSF -->
 		<finalName>MarketJSF</finalName>
 
+		<!--
+			ObjectDB-ren datu-basea eta igotako argazkiak ez dira kopiatu behar
+			target/classes-era: aplikazioak src/main/resources-etik zuzenean
+			irakurtzen ditu, eta datu-basea irekita badago (blokeatuta) build-ak huts egiten du.
+		-->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>*.temp</exclude>
+					<exclude>*.temp$</exclude>
+					<exclude>*.odb</exclude>
+					<exclude>*.odb$</exclude>
+					<exclude>images/**</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -41,7 +42,8 @@ public class SortuEskaintzaBean implements Serializable {
 	private String deskripzioa;
 	private Float prezioa;
 	private int egoera;
-	private Date data;
+	// Egutegia gaurko datarekin aukeratuta hasten da
+	private Date data = getGaur();
 	private transient Part argazkia;
 
 	public String sortu() {
@@ -55,18 +57,27 @@ public class SortuEskaintzaBean implements Serializable {
 		File fitxategia = null;
 		try {
 			fitxategia = gordeArgazkia();
+			if (fitxategia != null)
+				// Sale klaseak ez du karpeta sortzen: ImageIO.write-k huts egingo luke
+				Files.createDirectories(Path.of("src/main/resources/images"));
 			Sale sale = facadeBL.createSale(titulua, deskripzioa, egoera, prezioa, UtilDate.trim(data),
 					saioa.getSaltzailea(), fitxategia);
 			if (sale == null) {
 				errorea(context, "Ezin izan da eskaintza sortu: saltzailea ez da existitzen");
 				return null;
 			}
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Eskaintza sortuta", null));
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, sortutaMezua(sale), null));
 			garbitu();
-		} catch (ParamNullException | MustBeLaterThanTodayException | SaleAlreadyExistException e) {
-			errorea(context, e.getMessage());
+		// Negozioaren logikako mezuak JVM-ren Locale-aren araberakoak dira (Tomcat-en
+		// gaztelaniaz), beraz hemen idazten dira euskaraz
+		} catch (ParamNullException e) {
+			errorea(context, "Datu guztiak bete behar dira");
+		} catch (MustBeLaterThanTodayException e) {
+			errorea(context, "Argitarapen eguna ezin da gaur baino lehenagokoa izan");
+		} catch (SaleAlreadyExistException e) {
+			errorea(context, "Badago izenburu bereko eskaintza bat saltzaile honentzat");
 		} catch (IOException e) {
-			errorea(context, "Errorea argazkia igotzean: " + e.getMessage());
+			errorea(context, "Ezin izan da argazkia igo: fitxategiak irudi bat izan behar du");
 		} finally {
 			if (fitxategia != null)
 				fitxategia.delete();
@@ -100,12 +111,25 @@ public class SortuEskaintzaBean implements Serializable {
 		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, mezua, null));
 	}
 
+	/**
+	 * Eskaintzak Kontsultatu-n gaur arteko eskaintzak bakarrik agertzen dira, beraz
+	 * etorkizuneko data badu, noiz argitaratuko den esaten zaio erabiltzaileari.
+	 */
+	private String sortutaMezua(Sale sale) {
+		Date argitarapena = sale.getPublicationDate();
+		if (argitarapena != null && argitarapena.after(getGaur())) {
+			String eguna = new SimpleDateFormat("yyyy/MM/dd").format(argitarapena);
+			return "Eskaintza sortuta. " + eguna + " egunean argitaratuko da (orduan agertuko da eskaintzetan)";
+		}
+		return "Eskaintza sortuta eta argitaratuta";
+	}
+
 	private void garbitu() {
 		titulua = null;
 		deskripzioa = null;
 		prezioa = null;
 		egoera = 0;
-		data = null;
+		data = getGaur();
 		argazkia = null;
 	}
 

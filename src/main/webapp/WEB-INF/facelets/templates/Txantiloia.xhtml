@@ -8,6 +8,30 @@
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
+	<!-- Egutegiaren (p:datePicker) testuak euskaraz. PrimeFaces-ek ez du euskararik,
+	     eta hemen definitzen da (PrimeFaces-en scripten ondoren, horregatik body-n) -->
+	<script>
+		// PrimeFaces osagairik gabeko orrietan (Hasiera) ez dago PrimeFaces objekturik
+		if (window.PrimeFaces) PrimeFaces.locales["eu"] = Object.assign({}, PrimeFaces.locales["en_US"], {
+			firstDayOfWeek: 1,
+			showMonthAfterYear: true,
+			dateFormat: "yy/mm/dd",
+			monthNames: ["Urtarrila", "Otsaila", "Martxoa", "Apirila", "Maiatza", "Ekaina",
+				"Uztaila", "Abuztua", "Iraila", "Urria", "Azaroa", "Abendua"],
+			monthNamesShort: ["Urt", "Ots", "Mar", "Api", "Mai", "Eka", "Uzt", "Abu", "Ira", "Urr", "Aza", "Abe"],
+			dayNames: ["Igandea", "Astelehena", "Asteartea", "Asteazkena", "Osteguna", "Ostirala", "Larunbata"],
+			dayNamesShort: ["Iga", "Ast", "Asr", "Asz", "Ost", "Osr", "Lar"],
+			dayNamesMin: ["Ig", "Al", "Ar", "Az", "Og", "Or", "Lr"],
+			today: "Gaur",
+			clear: "Garbitu",
+			prevMonth: "Aurreko hilabetea",
+			nextMonth: "Hurrengo hilabetea",
+			prevYear: "Aurreko urtea",
+			nextYear: "Hurrengo urtea",
+			chooseDate: "Aukeratu data",
+			emptyMessage: "Ez dago emaitzarik"
+		});
+	</script>
 	<header class="goiburua">
 		<h1>Merkatua</h1>
 		<span class="erabiltzailea">#{saioa.saltzailea}</span>

@@ -38,6 +38,12 @@
 		<param-value>Development</param-value>
 	</context-param>
 
+	<!-- PrimeFaces-ek ez du locale-eu.js: ez bilatu (euskarazko testuak Txantiloia.xhtml-n daude) -->
+	<context-param>
+		<param-name>primefaces.CLIENT_SIDE_LOCALISATION</param-name>
+		<param-value>false</param-value>
+	</context-param>
+
 	<!-- Hasierako JSFa (hurrengo pausoan sortuko da) -->
 	<welcome-file-list>
 		<welcome-file>Hasiera.xhtml</welcome-file>

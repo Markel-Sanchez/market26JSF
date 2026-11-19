@@ -21,3 +21,9 @@ Thumbs.db
 .idea/
 *.iml
 .vscode/
+
+# Erabiltzaileek igotako argazkiak
+src/main/resources/images/
+
+# ObjectDB-ren log-ak
+log/

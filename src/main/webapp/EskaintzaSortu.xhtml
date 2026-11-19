@@ -34,7 +34,8 @@
 				</tr>
 				<tr>
 					<td>Egoera:</td>
-					<td><h:selectOneMenu id="egoera" value="#{sortu.egoera}">
+					<td><h:selectOneMenu id="egoera" value="#{sortu.egoera}"
+							validatorMessage="Egoera ez da zuzena" converterMessage="Egoera ez da zuzena">
 							<f:selectItems value="#{sortu.egoerak}" />
 						</h:selectOneMenu></td>
 					<td><h:message for="egoera" styleClass="errorea" /></td>
@@ -43,7 +44,9 @@
 					<td>Argitarapen eguna:</td>
 					<td><p:datePicker id="data" value="#{sortu.data}" pattern="yyyy/MM/dd"
 							mindate="#{sortu.gaur}" inline="true"
-							required="true" requiredMessage="Data aukeratu behar da" /></td>
+							required="true" requiredMessage="Data aukeratu behar da"
+							converterMessage="Data ez da zuzena (yyyy/MM/dd)"
+							validatorMessage="Argitarapen eguna ezin da gaur baino lehenagokoa izan" /></td>
 					<td><h:message for="data" styleClass="errorea" /></td>
 				</tr>
 				<tr>
