@@ -11,11 +11,8 @@
 	<name>MarketJSF</name>
 
 	<!--
-		Tomcat 10.1.x -> Jakarta EE 10
-		Servlet 6.0 / EL 5.0 / CDI 4.0 / Faces 4.0
-
-		market.jar eta objectdb.jar ez daude Maven-en: Eclipse-ko Java Build Path
-		eta Deployment Assembly-n gehitu dira (WEB-INF/lib).
+		Tomcat 10.1 -> Jakarta EE 10 (Servlet 6.0 / CDI 4.0 / Faces 4.0).
+		market.jar eta objectdb.jar Java Build Path eta Deployment Assembly-n daude.
 	-->
 
 	<properties>
@@ -44,14 +41,13 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- Jakarta Faces (Mojarra). Tomcat-ek ez du ekartzen -->
+		<!-- Jakarta Faces (Mojarra) -->
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>jakarta.faces</artifactId>
 			<version>${faces.version}</version>
 		</dependency>
 
-		<!-- Servlet API: Tomcat-ek ematen du -->
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>
@@ -66,14 +62,14 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- CDI inplementazioa (Weld). Tomcat-ek ez du CDI ematen -->
+		<!-- CDI (Weld) -->
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet-shaded</artifactId>
 			<version>${weld.version}</version>
 		</dependency>
 
-		<!-- PrimeFaces osagaiak (egutegia, taulak...) -->
+		<!-- PrimeFaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
@@ -81,7 +77,7 @@
 			<classifier>jakarta</classifier>
 		</dependency>
 
-		<!-- OmniFaces bihurkatzaileak -->
+		<!-- OmniFaces -->
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
@@ -99,11 +95,7 @@
 		<!-- URLa: http://localhost:8080/MarketJSF -->
 		<finalName>MarketJSF</finalName>
 
-		<!--
-			ObjectDB-ren datu-basea eta igotako argazkiak ez dira kopiatu behar
-			target/classes-era: aplikazioak src/main/resources-etik zuzenean
-			irakurtzen ditu, eta datu-basea irekita badago (blokeatuta) build-ak huts egiten du.
-		-->
+		<!-- Datu-basea eta argazkiak ez kopiatu target/classes-era -->
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>

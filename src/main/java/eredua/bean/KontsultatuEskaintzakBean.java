@@ -14,9 +14,8 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
 /**
- * "Eskaintzak Kontsultatu" erabilpen kasuaren bean kudeatua. EskaintzakKontsultatu
- * eta EskaintzaIkusi JSFek erabiltzen dute; saio eremua du, aukeratutako
- * eskaintza eta bilaketaren emaitzak orri batetik bestera mantentzeko.
+ * "Eskaintzak Kontsultatu" erabilpen kasuaren bean-a (EskaintzakKontsultatu eta
+ * EskaintzaIkusi JSFak).
  */
 @Named("kontsultatu")
 @SessionScoped
@@ -38,10 +37,7 @@ public class KontsultatuEskaintzakBean implements Serializable {
 		eskaintzak = facadeBL.getPublishedSales(testua, UtilDate.trim(new Date()));
 	}
 
-	/**
-	 * Taulako "Ikusi" botoiak deitzen du: eskaintza gorde eta EskaintzaIkusi
-	 * JSFra joaten da (faces-config.xml-ko "ikusi" nabigazio-araua).
-	 */
+	// Taulako "Ikusi" botoia: aukeratutako eskaintza erakutsi
 	public String ikusi(Sale sale) {
 		aukeratua = sale;
 		return "ikusi";

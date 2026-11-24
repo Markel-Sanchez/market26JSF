@@ -8,10 +8,8 @@
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	<!-- Egutegiaren (p:datePicker) testuak euskaraz. PrimeFaces-ek ez du euskararik,
-	     eta hemen definitzen da (PrimeFaces-en scripten ondoren, horregatik body-n) -->
+	<!-- Egutegiaren (p:datePicker) testuak euskaraz -->
 	<script>
-		// PrimeFaces osagairik gabeko orrietan (Hasiera) ez dago PrimeFaces objekturik
 		if (window.PrimeFaces) PrimeFaces.locales["eu"] = Object.assign({}, PrimeFaces.locales["en_US"], {
 			firstDayOfWeek: 1,
 			showMonthAfterYear: true,

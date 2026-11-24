@@ -6,8 +6,7 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
 /**
- * Saioaren informazioa: une honetan lan egiten ari den saltzailea.
- * Login erabilpen kasua egin arte, Swing aplikazioko saltzaile bera erabiltzen da.
+ * Saioko saltzailea (Login erabilpen kasua egin arte, finkoa).
  */
 @Named("saioa")
 @SessionScoped

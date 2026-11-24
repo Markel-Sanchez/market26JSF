@@ -10,10 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Eskaintzen argazkiak nabigatzaileari bidaltzen dizkio: /irudiak/izena.jpg
- *
- * Negozioaren logikak (Sale klaseak) argazkiak "src/main/resources/images/"
- * direktorioan gordetzen ditu, zerbitzariaren lan-direktorioarekiko.
+ * Eskaintzen argazkiak erakusten ditu (/irudiak/izena). Sale klaseak
+ * "src/main/resources/images/" karpetan gordetzen ditu.
  */
 @WebServlet("/irudiak/*")
 public class IrudiServlet extends HttpServlet {
@@ -28,14 +26,12 @@ public class IrudiServlet extends HttpServlet {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;
 		}
-		// Fitxategiaren izena bakarrik hartu (../ bezalako bideak saihesteko)
 		String izena = new File(bidea).getName();
 		File fitxategia = new File(IRUDIEN_KARPETA, izena);
 		if (!fitxategia.isFile()) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;
 		}
-		// Sale klaseak PNG formatuan gordetzen ditu irudi guztiak
 		resp.setContentType("image/png");
 		resp.setContentLengthLong(fitxategia.length());
 		Files.copy(fitxategia.toPath(), resp.getOutputStream());

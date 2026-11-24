@@ -28,8 +28,7 @@ import jakarta.inject.Named;
 import jakarta.servlet.http.Part;
 
 /**
- * "Eskaintza Sortu" erabilpen kasuaren bean kudeatua (saio eremua). Formularioa
- * garbitzen da eskaintza sortzean edo "Itxi" sakatzean.
+ * "Eskaintza Sortu" erabilpen kasuaren bean-a.
  */
 @Named("sortu")
 @SessionScoped
@@ -43,7 +42,6 @@ public class SortuEskaintzaBean implements Serializable {
 	private String deskripzioa;
 	private Float prezioa;
 	private int egoera;
-	// Egutegia gaurko datarekin aukeratuta hasten da
 	private Date data = getGaur();
 	private transient Part argazkia;
 
@@ -59,7 +57,6 @@ public class SortuEskaintzaBean implements Serializable {
 		try {
 			fitxategia = gordeArgazkia();
 			if (fitxategia != null)
-				// Sale klaseak ez du karpeta sortzen: ImageIO.write-k huts egingo luke
 				Files.createDirectories(Path.of("src/main/resources/images"));
 			Sale sale = facadeBL.createSale(titulua, deskripzioa, egoera, prezioa, UtilDate.trim(data),
 					saioa.getSaltzailea(), fitxategia);
@@ -69,8 +66,6 @@ public class SortuEskaintzaBean implements Serializable {
 			}
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, sortutaMezua(sale), null));
 			garbitu();
-		// Negozioaren logikako mezuak JVM-ren Locale-aren araberakoak dira (Tomcat-en
-		// gaztelaniaz), beraz hemen idazten dira euskaraz
 		} catch (ParamNullException e) {
 			errorea(context, "Datu guztiak bete behar dira");
 		} catch (MustBeLaterThanTodayException e) {
@@ -86,11 +81,7 @@ public class SortuEskaintzaBean implements Serializable {
 		return null;
 	}
 
-	/**
-	 * Igotako argazkia aldi baterako fitxategi batean gordetzen du, negozioaren
-	 * logikak File bat behar duelako. Fitxategiaren izena mantentzen da, Sale
-	 * klaseak izen hori erabiltzen duelako irudia gordetzeko.
-	 */
+	// Igotako argazkia aldi baterako fitxategi batean gorde (negozioaren logikak File bat behar du)
 	private File gordeArgazkia() throws IOException {
 		if (argazkia == null || argazkia.getSize() == 0)
 			return null;
@@ -112,10 +103,6 @@ public class SortuEskaintzaBean implements Serializable {
 		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, mezua, null));
 	}
 
-	/**
-	 * Eskaintzak Kontsultatu-n gaur arteko eskaintzak bakarrik agertzen dira, beraz
-	 * etorkizuneko data badu, noiz argitaratuko den esaten zaio erabiltzaileari.
-	 */
 	private String sortutaMezua(Sale sale) {
 		Date argitarapena = sale.getPublicationDate();
 		if (argitarapena != null && argitarapena.after(getGaur())) {
@@ -125,10 +112,6 @@ public class SortuEskaintzaBean implements Serializable {
 		return "Eskaintza sortuta eta argitaratuta";
 	}
 
-	/**
-	 * "Itxi" botoia: formularioa garbitu eta hasierara itzuli (saio eremua
-	 * denez, bestela datuak hurrengo aldian agertuko lirateke).
-	 */
 	public String itxi() {
 		garbitu();
 		return "hasiera";

@@ -11,7 +11,7 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
-		<!-- h:inputFile osagaiarekin argazkiak igotzeko -->
+		<!-- Argazkiak igotzeko (h:inputFile) -->
 		<multipart-config>
 			<max-file-size>10485760</max-file-size>
 		</multipart-config>
@@ -22,7 +22,7 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
-	<!-- CDI (Weld) Tomcat-en -->
+	<!-- CDI (Weld) -->
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>
@@ -32,19 +32,18 @@
 		<param-value>.xhtml</param-value>
 	</context-param>
 
-	<!-- Garapenean errore-mezu zehatzagoak erakusteko -->
 	<context-param>
 		<param-name>jakarta.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
 	</context-param>
 
-	<!-- PrimeFaces-ek ez du locale-eu.js: ez bilatu (euskarazko testuak Txantiloia.xhtml-n daude) -->
+	<!-- PrimeFaces-ek ez du euskarazko locale-rik (Txantiloia.xhtml-n dago) -->
 	<context-param>
 		<param-name>primefaces.CLIENT_SIDE_LOCALISATION</param-name>
 		<param-value>false</param-value>
 	</context-param>
 
-	<!-- Hasierako JSFa (hurrengo pausoan sortuko da) -->
+	<!-- Hasierako JSFa -->
 	<welcome-file-list>
 		<welcome-file>Hasiera.xhtml</welcome-file>
 	</welcome-file-list>

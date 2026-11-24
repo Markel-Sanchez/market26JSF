@@ -5,10 +5,7 @@ import businessLogic.BLFacadeImplementation;
 import dataAccess.DataAccess;
 
 /**
- * Negozioaren logikaren (BLFacadeImplementation) instantzia bakarra sortu eta
- * itzultzen du (Singleton). Bean kudeatu guztiek instantzia bera erabiltzen dute.
- *
- * Ez da JSFetatik zuzenean erabiltzen, beraz ez du @Named behar.
+ * Negozioaren logikaren instantzia bakarra (Singleton), bean guztiek erabiltzen dutena.
  */
 public class FacadeBean {
 

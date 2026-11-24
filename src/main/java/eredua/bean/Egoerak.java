@@ -6,9 +6,7 @@ import java.util.List;
 import jakarta.faces.model.SelectItem;
 
 /**
- * Produktuen egoerak. Sale klaseak zenbaki bat gordetzen du (0..3), eta hemen
- * dago zenbaki bakoitzari dagokion izena (gui.Utils klaseak JVM-ren Locale-a
- * erabiltzen du, eta Tomcat-en ez du "eus" itzultzen).
+ * Produktuen egoeren izenak (Sale klaseak 0..3 zenbakia gordetzen du).
  */
 public final class Egoerak {
 
