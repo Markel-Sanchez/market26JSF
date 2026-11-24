@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core"
+	xmlns:ui="jakarta.faces.facelets">
+<ui:composition template="/WEB-INF/facelets/templates/Txantiloia.xhtml">
+	<ui:define name="izenburua">Eskaintza ikusi</ui:define>
+	<ui:define name="gorputza">
+		<h2>Eskaintzaren xehetasunak</h2>
+		<h:form id="ikusiForm">
+			<table class="formularioa">
+				<tr>
+					<td>Tituloa:</td>
+					<td><h:outputText value="#{kontsultatu.aukeratua.title}" /></td>
+					<td rowspan="6">
+						<h:graphicImage styleClass="argazkia" rendered="#{kontsultatu.aukeratua.file ne null}"
+							value="/irudiak/#{kontsultatu.aukeratua.file}" alt="#{kontsultatu.aukeratua.title}" />
+					</td>
+				</tr>
+				<tr>
+					<td>Deskripzioa:</td>
+					<td><h:outputText value="#{kontsultatu.aukeratua.description}" /></td>
+				</tr>
+				<tr>
+					<td>Prezioa:</td>
+					<td><h:outputText value="#{kontsultatu.aukeratua.price}">
+							<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
+						</h:outputText></td>
+				</tr>
+				<tr>
+					<td>Egoera:</td>
+					<td><h:outputText value="#{kontsultatu.egoeraIzena}" /></td>
+				</tr>
+				<tr>
+					<td>Argitarapen eguna:</td>
+					<td><h:outputText value="#{kontsultatu.aukeratua.publicationDate}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText></td>
+				</tr>
+				<tr>
+					<td>Saltzailea:</td>
+					<td><h:outputText value="#{kontsultatu.aukeratua.seller.name}" /></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton styleClass="botoia" value="Itzuli" action="kontsultatu" immediate="true" />
+			</p>
+			<h:messages styleClass="mezuak" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -19,19 +19,20 @@ import domain.Sale;
 import exceptions.MustBeLaterThanTodayException;
 import exceptions.ParamNullException;
 import exceptions.SaleAlreadyExistException;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.model.SelectItem;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.Part;
 
 /**
- * "Eskaintza Sortu" erabilpen kasuaren bean kudeatua.
+ * "Eskaintza Sortu" erabilpen kasuaren bean kudeatua (saio eremua). Formularioa
+ * garbitzen da eskaintza sortzean edo "Itxi" sakatzean.
  */
 @Named("sortu")
-@ViewScoped
+@SessionScoped
 public class SortuEskaintzaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -122,6 +123,15 @@ public class SortuEskaintzaBean implements Serializable {
 			return "Eskaintza sortuta. " + eguna + " egunean argitaratuko da (orduan agertuko da eskaintzetan)";
 		}
 		return "Eskaintza sortuta eta argitaratuta";
+	}
+
+	/**
+	 * "Itxi" botoia: formularioa garbitu eta hasierara itzuli (saio eremua
+	 * denez, bestela datuak hurrengo aldian agertuko lirateke).
+	 */
+	public String itxi() {
+		garbitu();
+		return "hasiera";
 	}
 
 	private void garbitu() {

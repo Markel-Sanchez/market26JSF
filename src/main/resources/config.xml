@@ -5,6 +5,11 @@
 	<businessLogicPort>1099</businessLogicPort>
 	<businessLogicName>Market</businessLogicName>
   </businessLogic>
+  <!--
+    initialize="true": datu-basea ezabatu eta proba-datuekin sortzen da (lehenengo exekuzioan).
+    Lehenengo exekuzioaren ondoren "false" ipini, datu-basea irekitzeko ezabatu gabe
+    (Tomcat-en lan-direktorioko src/main/resources/config.xml kopian).
+  -->
   <database local="true" initialize="true">
 	<databaseNode>0.0.0.0</databaseNode>
 	<dbFilename>src/main/resources/products.temp</dbFilename>

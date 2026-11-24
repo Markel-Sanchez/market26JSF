@@ -26,6 +26,24 @@
 	</navigation-rule>
 
 	<navigation-rule>
+		<from-view-id>/EskaintzakKontsultatu.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ikusi</from-outcome>
+			<to-view-id>/EskaintzaIkusi.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/EskaintzaIkusi.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>kontsultatu</from-outcome>
+			<to-view-id>/EskaintzakKontsultatu.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>hasiera</from-outcome>

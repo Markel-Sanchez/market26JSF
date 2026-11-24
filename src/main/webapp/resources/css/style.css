@@ -24,6 +24,7 @@ body {
 
 .formularioa td {
 	padding: 4px 8px;
+	vertical-align: top;
 }
 
 .hasiera-botoiak .botoia {
@@ -37,10 +38,6 @@ body {
 
 .mezuak {
 	color: blue;
-}
-
-.xehetasunak {
-	margin-top: 20px;
 }
 
 .argazkia {

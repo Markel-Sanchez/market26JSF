@@ -8,16 +8,18 @@ import java.util.List;
 import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Sale;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
 /**
- * "Eskaintzak Kontsultatu" erabilpen kasuaren bean kudeatua.
+ * "Eskaintzak Kontsultatu" erabilpen kasuaren bean kudeatua. EskaintzakKontsultatu
+ * eta EskaintzaIkusi JSFek erabiltzen dute; saio eremua du, aukeratutako
+ * eskaintza eta bilaketaren emaitzak orri batetik bestera mantentzeko.
  */
 @Named("kontsultatu")
-@ViewScoped
+@SessionScoped
 public class KontsultatuEskaintzakBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +28,6 @@ public class KontsultatuEskaintzakBean implements Serializable {
 	private Sale aukeratua;
 
 	public void bilatu() {
-		aukeratua = null;
 		BLFacade facadeBL = FacadeBean.getBusinessLogic();
 		if (facadeBL == null) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -35,6 +36,15 @@ public class KontsultatuEskaintzakBean implements Serializable {
 		}
 		String testua = bilaketa == null ? "" : bilaketa;
 		eskaintzak = facadeBL.getPublishedSales(testua, UtilDate.trim(new Date()));
+	}
+
+	/**
+	 * Taulako "Ikusi" botoiak deitzen du: eskaintza gorde eta EskaintzaIkusi
+	 * JSFra joaten da (faces-config.xml-ko "ikusi" nabigazio-araua).
+	 */
+	public String ikusi(Sale sale) {
+		aukeratua = sale;
+		return "ikusi";
 	}
 
 	public String getEgoeraIzena() {
@@ -55,9 +65,5 @@ public class KontsultatuEskaintzakBean implements Serializable {
 
 	public Sale getAukeratua() {
 		return aukeratua;
-	}
-
-	public void setAukeratua(Sale aukeratua) {
-		this.aukeratua = aukeratua;
 	}
 }
